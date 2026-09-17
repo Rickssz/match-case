@@ -22,13 +22,15 @@ match regime:
         imposto = salario_bruto * 0.275
         aliquota = '27.5%'
     case _:
-        print('Regime inválido!')
-        
-salario_liquido = salario_bruto - imposto
+        imposto = None
 
-print('\n--- RESUMO DO IRRF ---')
-print(f'Seu regime é de: {regime} ')
-print(f'Seu salario é de: R$ {salario_bruto:.2f} ')
-print(f'Seu imposto é de: R$ {imposto:.2f} ')
-print(f'Sua aliquota é de: R$ {aliquota} ')
-print(f'Seu salario liquido é de: R$ {salario_liquido:.2f} ')
+if imposto is not None:
+    salario_liquido = salario_bruto - imposto
+    print('\n--- RESUMO DO IRRF ---')
+    print(f'Regime: {regime}')
+    print(f'Salário Bruto: R$ {salario_bruto:.2f}')
+    print(f'Alíquota: {aliquota}')
+    print(f'Imposto Retido: R$ {imposto:.2f}')
+    print(f'Salário Líquido: R$ {salario_liquido:.2f}')
+else:
+    print('\n Opção de regime inválida! Operação cancelada.')
